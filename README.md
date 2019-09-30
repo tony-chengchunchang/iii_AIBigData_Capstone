@@ -9,7 +9,7 @@ Use AI & Big Data tools to improve the performances of the teams of the communit
 - Quarter Prediction:
 Use the first 8 minutes stats to predict the result at the end of the quarter.
 - Player Identification:
-Use the image recognition solution to identify and return the average stats of each opponent player when they are checking in to the game.
+Use image recognition solution to identify and return the average stats of each opponent player when they are checking in to the game.
 
 ## Environment Setup
 - Spark 2.4.3
@@ -25,9 +25,11 @@ Data source --> Kafka --> Spark Streaming --> IFTTT & Line APP
 - Before Starting:
     - Create Kafka Topics of input and output for both subjects.
     - Create and make the connection of a new IFTTT webhook url. (https://help.ifttt.com/hc/en-us/categories/115001566148-Getting-Started)
-   
+    - Download keras model https://www.dropbox.com/s/llpxd14is7gyj0z/model.h5 and put it under
+    ```player_identification/model/keras```
+    
 - Quarter Prediction:
-     - Build the model for quarter prediction: ```python ml_model.py```
+    - Build the model for quarter prediction: ```python ml_model.py```
     
     - Start a Spark Streaming job:
     ```
