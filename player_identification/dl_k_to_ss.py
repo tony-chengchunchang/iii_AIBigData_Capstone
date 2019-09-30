@@ -399,7 +399,7 @@ def output_rdd(rdd):
     
 def output_partition(partition):
     topic = 'dl_output'
-    producer = KafkaProducer(bootstrap_servers='192.168.222.133:9092')
+    producer = KafkaProducer(bootstrap_servers='localhost:9092')
     
     for i in partition:
         for j in i:
@@ -426,7 +426,7 @@ if __name__ == '__main__':
     # !! player_stats = spark.read.csv('/home/cloudera/project/data_sources/stats.csv', header=True, inferSchema=True)
     # !! seems to always be dead when being applied in a def func
     
-    raw_stream = KafkaUtils.createStream(ssc, '192.168.222.133:2182', 'dl', {'dl_input':3}, valueDecoder=imdecoder)
+    raw_stream = KafkaUtils.createStream(ssc, 'localhost:2182', 'dl', {'dl_input':3}, valueDecoder=imdecoder)
     # Kafka default valueDecoder is str.decode('utf-8')
     imgs = raw_stream.map(lambda x:x[1])
     

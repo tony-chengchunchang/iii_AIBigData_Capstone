@@ -7,7 +7,7 @@ with open('../data_sources/test_line.csv', 'r') as f:
 data = data[1:]
 revised = [e[:-1] for e in data]
 
-producer = KafkaProducer(bootstrap_servers='192.168.222.133:9092')
+producer = KafkaProducer(bootstrap_servers='localhost:9092')
 topic = 'ml_input'
 
 for msg in revised:

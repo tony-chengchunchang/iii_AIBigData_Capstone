@@ -1,6 +1,3 @@
-# spark-submit --master spark://quickstart.cloudera:7077 --packages org.apache.spark:spark-streaming-kafka-0-8_2.11:2.4.3 ml_k_to_ss.py
-
-
 from pyspark.sql import Row, SparkSession
 from pyspark.streaming import StreamingContext
 from pyspark.streaming.kafka import KafkaUtils
@@ -41,7 +38,7 @@ def output_rdd(rdd):
     rdd.foreachPartition(output_partition)
 
 def output_partition(partition):
-    producer = KafkaProducer(bootstrap_servers='192.168.222.133:9092')
+    producer = KafkaProducer(bootstrap_servers='localhost:9092')
     topic = 'ml_output'
     
     for e in partition:
@@ -63,7 +60,7 @@ if __name__ == '__main__':
     sc = spark.sparkContext
     ssc = StreamingContext(sc,1)
     
-    raw_stream = KafkaUtils.createStream(ssc, '192.168.222.133:2182', 'ml', {'ml_input':3})
+    raw_stream = KafkaUtils.createStream(ssc, 'localhost:2182', 'ml', {'ml_input':3})
     values = raw_stream.map(lambda x:x[1])
     split = values.map(lambda x:x.split(','))
     rows = split.map(col_mapping)

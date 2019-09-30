@@ -21,8 +21,10 @@ for msg in consumer:
     else:
         v2 = '[預測]本節得分將 少於 對手'
         v3 = '--請調整陣容配置--'
-    
-    url =('https://maker.ifttt.com/trigger/Basketball/with/key/bE3v1hfGDxpgBegC_-nbc7' +
+        
+    # Replace this to your own IFTTT webhook
+    # https://help.ifttt.com/hc/en-us/categories/115001566148-Getting-Started
+    url =('https://maker.ifttt.com/trigger/myEvent/with/key/myKey' +
                '?value1=' + v1 +
                '&value2=' + v2 +
                '&value3=' + v3)
